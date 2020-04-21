@@ -1,0 +1,23 @@
+{
+  "name": "jest-comment-change-coverage",
+  "version": "1.0.0",
+  "description": "This action comments a pull request with the changed jest code coverage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monapasan/jest-comment-change-coverage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monapasan/jest-comment-change-coverage/issues"
+  },
+  "homepage": "https://github.com/monapasan/jest-comment-change-coverage#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3"
+  }
+}
