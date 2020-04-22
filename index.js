@@ -20,12 +20,20 @@ const main = async () => {
   const prNumber = commitPRs.data[0].number;
 
   const codeCoverage = execSync(testCommand).toString();
-  let coveragePercentage = execSync(
-    `npx coverage-percentage ${coverageFolderPath}/lcov.info --lcov`
-  ).toString();
-  coveragePercentage = parseFloat(coveragePercentage).toFixed(2);
+  let coveragePercentage;
+  try {
+    coveragePercentage = execSync(
+      `npx coverage-percentage ${coverageFolderPath}/lcov.info --lcov`
+    ).toString();
+    coveragePercentage = 100 - parseFloat(coveragePercentage).toFixed(2);
+  } catch (e) {
+    core.error(
+      `Coverage folder doesn't exist. It seems like no changes in the coverage.`
+    );
+    coveragePercentage = 0;
+  }
 
-  const commentBody = `<p>Total Coverage after changes: <code>${coveragePercentage}</code></p>
+  const commentBody = `<p>Change in coverage after changes: <code>${coveragePercentage}</code></p>
         <details><summary>Coverage report</summary>
         <p>
         <pre>${codeCoverage}</pre>
